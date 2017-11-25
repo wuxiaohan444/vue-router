@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+    var login={
+        template:"<h1>登录获取到的id为{{id}}</h1>",
+        data(){
+            return{
+                id:0
+            }
+        },
+        created(){
+            console.log(this.$route);
+            this.id=this.$route.params.name;
+        }
+    }
+
+    var register={
+        template:"<h1>注册</h1>"
+    }
+
+
+    var router = new VueRouter({
+        routes:[
+            {
+                path:"/login/:name?",
+                component:login
+            },
+            {
+                path:"/register",
+                component:register
+            }
+        ]
+    })
+
+
+    var vm = new Vue({
+        router,
+        el: '#app',
+        data: {
+            msg: '大家好'
+        }
+    })
+</script>
+</body>
+</html>

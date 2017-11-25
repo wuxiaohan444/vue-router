@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-router/dist/vue-router.js"></script>
+    <style>
+        .router-link-active{
+            font-size: 20px;
+            color: red;
+            background: black;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-link :to="{name:'home'}">首页</router-link>
+    <router-link :to="{name:'list'}">列表</router-link>
+
+    <!--<router-link to="/home">首页</router-link>-->
+    <!--<router-link to="/list">列表</router-link>-->
+   <router-view></router-view>
+</div>
+<script>
+    var router =new VueRouter({
+        routes:[
+            {
+                name:"home",
+                path:'/home',
+                component:{
+                    template:"<h1>首页</h1>"
+                }
+            },
+            {
+                name:"list",
+                path:"/list",
+                component:{
+                    template:"<h1>列表</h1>"
+                }
+            }
+        ]
+    })
+
+
+
+    var vm=new Vue({
+        router,
+        el:'#app',
+        data:{
+            msg:'大家好'
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+    var index = {
+        template: "<div><h1>首页</h1><router-view></router-view></div>"
+    }
+    var login = {
+        template: "<h1>登录</h1>"
+    }
+    var register = {
+        template: "<h1>注册</h1>"
+    }
+
+
+    var router = new VueRouter({
+        routes: [
+            {
+                path: "/index",
+                component: index,
+                children: [
+                    {
+                        path: "login",
+                        component: login
+                    },
+                    {
+                        path: "register",
+                        component: register
+                    }
+                ]
+            }
+        ]
+    })
+
+    var vm = new Vue({
+        router,
+        el: '#app',
+        data: {
+            msg: '大家好'
+        }
+    })
+</script>
+</body>
+</html>
